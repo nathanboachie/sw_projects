@@ -60,20 +60,20 @@ print(my_df_test.shape)
 def build_model(im_width, im_height):
     
     model = tf.keras.models.Sequential([
-        tf.keras.layers.Conv2D(16, (3,3), activation = 'relu', input_shape = (im_width, im_height, 1)),
+        tf.keras.layers.Conv2D(8, (3,3), activation = 'relu', input_shape = (im_width, im_height, 1)),
         tf.keras.layers.MaxPooling2D(2, 2),
-        tf.keras.layers.Conv2D(32, (3,3), activation = 'relu'),
+        tf.keras.layers.Conv2D(8, (3,3), activation = 'relu'),
         tf.keras.layers.MaxPooling2D(2,2),
 
         tf.keras.layers.Flatten(),
        
-        tf.keras.layers.Dense(64, activation = 'relu'),
-        tf.keras.layers.Dense(64, activation = 'relu'),
+        tf.keras.layers.Dense(16, activation = 'relu'),
+        tf.keras.layers.Dense(16, activation = 'relu'),
         tf.keras.layers.Dense(7, activation = 'softmax')
         ])
     
     model.compile(loss = 'sparse_categorical_crossentropy',
-                  optimizer = tf.keras.optimizers.Adam(learning_rate = 1e-3),
+                  optimizer = tf.keras.optimizers.Adam(learning_rate = 5e-4),
                   metrics = ['accuracy'])
     return model
     
